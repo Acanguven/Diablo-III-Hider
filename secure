@@ -1,0 +1,24 @@
+#RequireAdmin
+#include <MsgBoxConstants.au3>
+#include <TrayConstants.au3>
+HotKeySet("{F8}", "bring")
+Local $version = "0.2"
+
+TrayTip("", "Diablo Bringer(" & $version & ") working.", 5)
+While 1
+	Sleep(100)
+	Local $gameState = WinGetState("Diablo III")
+	If $gameState <> 7 and $gameState <> 15 Then
+		WinActivate("Diablo III")
+	EndIf
+WEnd
+
+Func bring()
+
+	Local $aPos = WinGetPos("Diablo III")
+	If $aPos[0] < 0 Then
+		WinMove("Diablo III","",0,0)
+	Else
+		WinMove("Diablo III","",-1000,0)
+	EndIf
+EndFunc
